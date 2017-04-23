@@ -1,11 +1,20 @@
 <template>
-  <div>
-    <h1>Hello I'm Luna</h1>
+  <div class="home">
+    <div class="row">
+      <div class="col-md-4 offset-md-4">
+        <b-card header="Luna App"
+                class="mb-2"
+                title="Hello I'm Luna"
+                show-footer
+        >
+        </b-card>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'home'
-  }
+export default {
+  name: 'home'
+}
 </script>
