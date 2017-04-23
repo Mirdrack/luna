@@ -1,6 +1,6 @@
 # luna
 
-> A Vue.js project
+> Basic single page application with Vue.js
 
 ## Build Setup
 
