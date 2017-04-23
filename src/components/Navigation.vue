@@ -4,19 +4,21 @@
 
     <b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
-    <b-link class="navbar-brand" to="#">
+    <b-link class="navbar-brand" to="home">
       <span>Luna</span>
     </b-link>
 
     <b-collapse is-nav id="nav_collapse">
       
       <b-nav is-nav-bar>
-        <b-nav-item>Home</b-nav-item>
+        <b-nav-item to="home">Home</b-nav-item>
         <b-nav-item>Support</b-nav-item>
-        <b-nav-item>About</b-nav-item>
+        <b-nav-item to="about">About</b-nav-item>
       </b-nav>
       
       <b-nav is-nav-bar class="ml-auto">
+
+        <b-nav-item to="login">Login</b-nav-item>
         
         <!-- Navbar dropdown -->
         <b-nav-item-dropdown right-alignment>
