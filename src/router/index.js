@@ -9,6 +9,8 @@ import Home from '@/components/Home'
 import About from '@/components/About'
 import Login from '@/components/Login'
 
+import UserIndex from '@/components/users/UserIndex'
+
 Vue.use(Router)
 Vue.use(BootstrapVue)
 
@@ -29,6 +31,12 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/users',
+      name: 'user-index',
+      component: UserIndex,
+      meta: { requiresAuth: true }
     }
   ]
 })

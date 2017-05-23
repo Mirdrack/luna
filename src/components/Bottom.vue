@@ -1,5 +1,5 @@
 <template>
-	<div id="footer">
+	<div id="bottom">
 		Powered by: Mirdrack
 	</div>
 </template>

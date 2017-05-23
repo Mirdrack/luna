@@ -6,17 +6,19 @@
                 class="mb-2"
                 show-footer
         >
-          <div class="form-group">
-            <label for="email">Email address:</label>
-            <b-form-input id="email" type="email"></b-form-input>
-          </div>
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <b-form-input id="password" type="password"></b-form-input>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-primary btn-block" type="submit">Login</button>
-          </div>
+          <form @submit.prevent="login">
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <b-form-input id="email" type="email" v-model="form.email"></b-form-input>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <b-form-input id="password" type="password" v-model="form.password"></b-form-input>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" type="submit">Login</button>
+            </div>
+          </form>
         </b-card>
       </div>
     </div>
@@ -24,7 +26,39 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'login'
+  name: 'login',
+
+  data: function () {
+    let data = {
+      form: {
+        email: '',
+        password: ''
+      }
+    }
+    return data
+  },
+
+  methods: {
+    login: function () {
+      axios.post('http://rea.app/login', this.form)
+        .then(response => {
+          let responseData = response.data.data
+          window.localStorage.setItem('access_token', responseData.token)
+          console.log(this.$route)
+          this.$route.router.go('/')
+          console.log('here2')
+        })
+        .catch(error => {
+          if (error.response) {
+            console.log(error.response.data)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+          }
+        })
+    }
+  }
 }
 </script>

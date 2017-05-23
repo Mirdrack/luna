@@ -5,18 +5,18 @@
       <div  id="main">
         <router-view></router-view>
       </div>
-      <Footer></Footer>
+      <Bottom></Bottom>
     </div>
   </div>
 </template>
 
 <script>
 import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
+import Bottom from '@/components/Bottom'
 
 export default {
   name: 'app',
-  components: { Navigation, Footer }
+  components: { Navigation, Bottom }
 }
 </script>
 

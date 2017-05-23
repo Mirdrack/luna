@@ -6,6 +6,20 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    const accessToken = JSON.parse(window.localStorage.getItem('access_token'))
+    if (accessToken) {
+      console.log('ando')
+      next()
+    } else {
+      next({name: 'Home'})
+    }
+  } else {
+    next()
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
