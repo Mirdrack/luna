@@ -47,9 +47,7 @@ export default {
         .then(response => {
           let responseData = response.data.data
           window.localStorage.setItem('access_token', responseData.token)
-          console.log(this.$route)
-          this.$route.router.go('/')
-          console.log('here2')
+          this.$router.push('/')
         })
         .catch(error => {
           if (error.response) {

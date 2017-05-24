@@ -8,9 +8,8 @@ Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth) {
-    const accessToken = JSON.parse(window.localStorage.getItem('access_token'))
+    const accessToken = window.localStorage.getItem('access_token')
     if (accessToken) {
-      console.log('ando')
       next()
     } else {
       next({name: 'Home'})

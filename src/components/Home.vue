@@ -7,6 +7,7 @@
                 title="Hello I'm Luna"
                 show-footer
         >
+          You should sing in
         </b-card>
       </div>
     </div>
