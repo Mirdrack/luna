@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import Home from '@/components/Home'
+import Support from '@/components/Support'
 import About from '@/components/About'
 import Login from '@/components/Login'
 
@@ -19,8 +20,18 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'root',
+      component: Home
+    },
+    {
+      path: '/home',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/support',
+      name: 'Support',
+      component: Support
     },
     {
       path: '/about',

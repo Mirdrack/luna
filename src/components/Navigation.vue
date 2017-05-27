@@ -12,7 +12,7 @@
       
       <b-nav is-nav-bar>
         <b-nav-item to="home">Home</b-nav-item>
-        <b-nav-item>Support</b-nav-item>
+        <b-nav-item to="support">Support</b-nav-item>
         <b-nav-item to="about" v-if="isLogged === true">About</b-nav-item>
       </b-nav>
       
@@ -42,23 +42,23 @@
 export default {
   template: '<Navigation/>',
   name: 'navigation',
-  data: function () {
+  data () {
     return {
-      isLogged: false
+      isLogged: this.checkIfIsLogged()
     }
   },
-  created: function () {
+  created () {
     this.$bus.$on('logged', () => {
       this.isLogged = this.checkIfIsLogged()
     })
   },
   methods: {
-    singout: function () {
+    singout () {
       this.$localStorage.remove('access_token')
       this.isLogged = this.checkIfIsLogged()
       this.$router.push('/')
     },
-    checkIfIsLogged: function () {
+    checkIfIsLogged () {
       let token = this.$localStorage.get('access_token')
       if (token) {
         return true

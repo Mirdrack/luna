@@ -31,7 +31,7 @@ import axios from 'axios'
 export default {
   name: 'login',
 
-  data: function () {
+  data () {
     let data = {
       form: {
         email: '',
@@ -42,7 +42,7 @@ export default {
   },
 
   methods: {
-    login: function () {
+    login () {
       axios.post('http://rea.app/login', this.form)
         .then(response => {
           let responseData = response.data.data
