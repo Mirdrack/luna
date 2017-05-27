@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
+import VueLocalStorage from 'vue-localstorage'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -14,8 +15,9 @@ import UserIndex from '@/components/users/UserIndex'
 
 Vue.use(Router)
 Vue.use(BootstrapVue)
+Vue.use(VueLocalStorage)
 
-export default new Router({
+let router = new Router({
   mode: 'history',
   routes: [
     {
@@ -51,3 +53,22 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  const accessToken = window.localStorage.getItem('access_token')
+  if (accessToken && to.name === 'Login') {
+    next({name: 'Home'})
+  }
+
+  if (to.meta.requiresAuth) {
+    if (accessToken) {
+      next()
+    } else {
+      next({name: 'Home'})
+    }
+  } else {
+    next()
+  }
+})
+
+export default router
