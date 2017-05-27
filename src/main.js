@@ -1,8 +1,10 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import EventBus from './EventBus'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueLocalStorage from 'vue-localstorage'
 
 Vue.config.productionTip = false
 
@@ -18,6 +20,9 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+
+Vue.use(VueLocalStorage)
+Vue.prototype.$bus = EventBus
 
 /* eslint-disable no-new */
 new Vue({

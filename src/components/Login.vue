@@ -46,7 +46,8 @@ export default {
       axios.post('http://rea.app/login', this.form)
         .then(response => {
           let responseData = response.data.data
-          window.localStorage.setItem('access_token', responseData.token)
+          this.$localStorage.set('access_token', responseData.token)
+          this.$bus.$emit('logged', 'User logged')
           this.$router.push('/')
         })
         .catch(error => {

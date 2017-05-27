@@ -13,15 +13,15 @@
       <b-nav is-nav-bar>
         <b-nav-item to="home">Home</b-nav-item>
         <b-nav-item>Support</b-nav-item>
-        <b-nav-item to="about" v-if="checkIfIsLogged() === true">About</b-nav-item>
+        <b-nav-item to="about" v-if="isLogged === true">About</b-nav-item>
       </b-nav>
       
       <b-nav is-nav-bar class="ml-auto">
 
-        <b-nav-item to="login" v-if="checkIfIsLogged() === false">Login</b-nav-item>
+        <b-nav-item to="login" v-if="isLogged === false">Login</b-nav-item>
         
         <!-- Navbar dropdown -->
-        <b-nav-item-dropdown right-alignment v-if="checkIfIsLogged() === true">
+        <b-nav-item-dropdown right-alignment v-if="isLogged === true">
           
           <!-- Using text slot -->
           <template slot="text">
@@ -42,18 +42,24 @@
 export default {
   template: '<Navigation/>',
   name: 'navigation',
+  data: function () {
+    return {
+      isLogged: false
+    }
+  },
   created: function () {
-    // `this` points to the vm instance
-    console.log('navigation')
+    this.$bus.$on('logged', () => {
+      this.isLogged = this.checkIfIsLogged()
+    })
   },
   methods: {
     singout: function () {
-      window.localStorage.removeItem('access_token')
+      this.$localStorage.remove('access_token')
+      this.isLogged = this.checkIfIsLogged()
       this.$router.push('/')
     },
     checkIfIsLogged: function () {
-      console.log('checking....')
-      let token = window.localStorage.removeItem('access_token')
+      let token = this.$localStorage.get('access_token')
       if (token) {
         return true
       } else {
