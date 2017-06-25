@@ -12,6 +12,7 @@
       
       <b-nav is-nav-bar>
         <b-nav-item to="home">Home</b-nav-item>
+        <b-nav-item to="users" v-if="isLogged === true">Users</b-nav-item>
         <b-nav-item to="support">Support</b-nav-item>
         <b-nav-item to="about" v-if="isLogged === true">About</b-nav-item>
       </b-nav>

@@ -27,22 +27,22 @@ let router = new Router({
     },
     {
       path: '/home',
-      name: 'Home',
+      name: 'home',
       component: Home
     },
     {
       path: '/support',
-      name: 'Support',
+      name: 'support',
       component: Support
     },
     {
       path: '/about',
-      name: 'About',
+      name: 'about',
       component: About
     },
     {
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: Login
     },
     {
@@ -56,15 +56,15 @@ let router = new Router({
 
 router.beforeEach((to, from, next) => {
   const accessToken = window.localStorage.getItem('access_token')
-  if (accessToken && to.name === 'Login') {
-    next({name: 'Home'})
+  if (accessToken && to.name === 'login') {
+    next({name: 'home'})
   }
 
   if (to.meta.requiresAuth) {
     if (accessToken) {
       next()
     } else {
-      next({name: 'Home'})
+      next({name: 'home'})
     }
   } else {
     next()
